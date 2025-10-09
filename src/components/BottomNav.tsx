@@ -9,7 +9,7 @@ export const BottomNav = () => {
   const navItems = [
     { icon: Home, label: "Home", path: "/" },
     { icon: Heart, label: "Feed", path: "/feed" },
-    { icon: Plus, label: "Track", path: "/log-activity" },
+    { icon: Plus, label: "Record", path: "/record-activity" },
     { icon: BarChart2, label: "Tracker", path: "/tracker" },
     { icon: Compass, label: "Explore", path: "/explore" },
   ];
@@ -30,7 +30,7 @@ export const BottomNav = () => {
                 isActive ? "text-primary" : "text-muted-foreground"
               )}
             >
-              <Icon className={cn("w-6 h-6", item.label === "Track" && "w-8 h-8")} />
+              <Icon className={cn("w-6 h-6", item.label === "Record" && "w-8 h-8")} />
               <span className="text-xs font-medium">{item.label}</span>
             </button>
           );
