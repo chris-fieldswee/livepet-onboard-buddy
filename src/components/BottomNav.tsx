@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Home, Plus, Compass, Heart } from "lucide-react";
+import { Home, Plus, Compass, Heart, BarChart2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const BottomNav = () => {
@@ -9,7 +9,8 @@ export const BottomNav = () => {
   const navItems = [
     { icon: Home, label: "Home", path: "/" },
     { icon: Heart, label: "Feed", path: "/feed" },
-    { icon: Plus, label: "Record", path: "/record-activity" },
+    { icon: Plus, label: "Track", path: "/log-activity" },
+    { icon: BarChart2, label: "Tracker", path: "/tracker" },
     { icon: Compass, label: "Explore", path: "/explore" },
   ];
 
@@ -29,7 +30,7 @@ export const BottomNav = () => {
                 isActive ? "text-primary" : "text-muted-foreground"
               )}
             >
-              <Icon className={cn("w-6 h-6", item.label === "Record" && "w-8 h-8")} />
+              <Icon className={cn("w-6 h-6", item.label === "Track" && "w-8 h-8")} />
               <span className="text-xs font-medium">{item.label}</span>
             </button>
           );
