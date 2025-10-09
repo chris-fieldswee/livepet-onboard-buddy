@@ -92,7 +92,7 @@ const CommunityFeed = () => {
           <h1 className="text-2xl font-bold">Community Feed</h1>
         </header>
 
-        <div className="flex-1 space-y-4 p-4">
+        <div className="flex-1 space-y-4 p-4 overflow-y-auto pb-20">
           {activities.map((activity) => (
             <Card key={activity.id} className="overflow-hidden animate-fade-in">
               {/* Header */}
