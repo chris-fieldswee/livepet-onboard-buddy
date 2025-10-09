@@ -60,7 +60,7 @@ const Dashboard = () => {
         )}
 
         {/* Pet Profile Card */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-6 flex-1">
           <Card className="p-6 cursor-pointer hover:bg-muted/50 transition-colors" onClick={() => navigate("/pet-profile")}>
             <div className="flex items-center space-x-4">
               <div className="w-20 h-20 rounded-2xl overflow-hidden bg-muted">
