@@ -18,6 +18,9 @@ import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import LogActivity from "./pages/LogActivity";
 import ActivityTracker from "./pages/ActivityTracker";
+import Health from "./pages/Health";
+import HealthRecords from "./pages/HealthRecords";
+import Nutrition from "./pages/Nutrition";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +44,9 @@ const App = () => (
           <Route path="/explore" element={<ExplorePage />} />
           <Route path="/log-activity" element={<LogActivity />} />
           <Route path="/tracker" element={<ActivityTracker />} />
+          <Route path="/health" element={<Health />} />
+          <Route path="/health-records" element={<HealthRecords />} />
+          <Route path="/nutrition" element={<Nutrition />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
