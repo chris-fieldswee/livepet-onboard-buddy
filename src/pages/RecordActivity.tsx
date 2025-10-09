@@ -78,7 +78,7 @@ const RecordActivity = () => {
   if (!selectedActivity) {
     return (
       <MobileContainer>
-        <div className="flex flex-col min-h-screen pb-20">
+        <div className="flex flex-col min-h-screen">
           <header className="sticky top-0 bg-background border-b p-4 flex items-center space-x-3 z-10">
             <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full">
               <ArrowLeft className="w-5 h-5" />
@@ -86,7 +86,7 @@ const RecordActivity = () => {
             <h1 className="text-xl font-semibold">Record Activity</h1>
           </header>
 
-          <div className="flex-1 p-6 space-y-4">
+          <div className="flex-1 p-6 space-y-4 overflow-y-auto pb-20">
             <h2 className="text-lg font-semibold mb-4">Choose Activity Type</h2>
             {activities.map((activity) => (
               <Card
@@ -112,7 +112,7 @@ const RecordActivity = () => {
 
   return (
     <MobileContainer>
-      <div className="flex flex-col min-h-screen pb-20">
+      <div className="flex flex-col min-h-screen">
         <header className="sticky top-0 bg-background border-b p-4 flex items-center space-x-3 z-10">
           <Button variant="ghost" size="icon" onClick={() => setSelectedActivity(null)} className="rounded-full">
             <ArrowLeft className="w-5 h-5" />
@@ -122,7 +122,7 @@ const RecordActivity = () => {
           </h1>
         </header>
 
-        <div className="flex-1 p-6 space-y-6">
+        <div className="flex-1 p-6 space-y-6 overflow-y-auto pb-20">
           {/* Tracking Section */}
           <Card className="p-6 space-y-4">
             <div className="flex justify-center">
