@@ -21,6 +21,7 @@ import ActivityTracker from "./pages/ActivityTracker";
 import Health from "./pages/Health";
 import HealthRecords from "./pages/HealthRecords";
 import Nutrition from "./pages/Nutrition";
+import MapPage from "./pages/Map";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/health" element={<Health />} />
           <Route path="/health-records" element={<HealthRecords />} />
           <Route path="/nutrition" element={<Nutrition />} />
+          <Route path="/map" element={<MapPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
