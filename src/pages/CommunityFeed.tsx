@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Heart, MessageCircle, Share2, MapPin, Clock, Route } from "lucide-react";
+import { PawPrint, MessageCircle, Share2, MapPin, Clock, Route } from "lucide-react";
 import { toast } from "sonner";
 
 const CommunityFeed = () => {
@@ -15,11 +15,11 @@ const CommunityFeed = () => {
       pet: { name: "Luna", avatar: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=100&h=100&fit=crop" },
       owner: "Sarah Johnson",
       activityType: "Walk",
-      emoji: "🐕",
+      emoji: "枢",
       duration: "45 min",
       distance: "3.2 km",
       location: "Riverside Park",
-      caption: "Beautiful morning walk with Luna! She loved chasing the ducks 🦆",
+      caption: "Beautiful morning walk with Luna! She loved chasing the ducks ｦ",
       photos: [
         "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=400&fit=crop",
         "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=400&fit=crop",
@@ -34,9 +34,9 @@ const CommunityFeed = () => {
       pet: { name: "Max", avatar: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=100&h=100&fit=crop" },
       owner: "Mike Chen",
       activityType: "Training",
-      emoji: "🦴",
+      emoji: "ｦｴ",
       duration: "30 min",
-      caption: "Max finally mastered 'stay'! So proud of this good boy 🎉",
+      caption: "Max finally mastered 'stay'! So proud of this good boy 脂",
       photos: [
         "https://images.unsplash.com/photo-1558788353-f76d92427f16?w=400&h=400&fit=crop",
       ],
@@ -50,9 +50,9 @@ const CommunityFeed = () => {
       pet: { name: "Bella", avatar: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=100&h=100&fit=crop" },
       owner: "Emma Davis",
       activityType: "Play Session",
-      emoji: "🎾",
+      emoji: "疾",
       duration: "20 min",
-      caption: "Fetch session at the dog park! Bella made so many new friends today 🐕",
+      caption: "Fetch session at the dog park! Bella made so many new friends today 枢",
       photos: [],
       kudos: 31,
       comments: 8,
@@ -71,7 +71,7 @@ const CommunityFeed = () => {
         toast.success("Kudos removed");
       } else {
         newSet.add(activityId);
-        toast.success("Kudos given! 👍");
+        toast.success("Kudos given! 総");
       }
       return newSet;
     });
@@ -87,7 +87,7 @@ const CommunityFeed = () => {
 
   return (
     <MobileContainer>
-      <div className="flex flex-col min-h-screen pb-20">
+      <div className="flex flex-col min-h-screen">
         <header className="sticky top-0 bg-background border-b p-4 z-10">
           <h1 className="text-2xl font-bold">Community Feed</h1>
         </header>
@@ -155,7 +155,7 @@ const CommunityFeed = () => {
                       onClick={() => handleKudos(activity.id)}
                       className={likedActivities.has(activity.id) ? "text-red-500" : ""}
                     >
-                      <Heart
+                      <PawPrint
                         className={`w-5 h-5 mr-1 ${likedActivities.has(activity.id) ? "fill-current" : ""}`}
                       />
                       {activity.kudos + (likedActivities.has(activity.id) && !activity.hasLiked ? 1 : 0)}
