@@ -7,8 +7,9 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ArrowLeft, Camera, Upload, UserPlus, Mail, Trash2 } from "lucide-react";
+import { ArrowLeft, Camera, Upload, UserPlus, Mail, Trash2, Award } from "lucide-react";
 import { toast } from "sonner";
+import { Badge } from "@/components/ui/badge";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -19,6 +20,10 @@ const UserProfile = () => {
   const [familyMembers, setFamilyMembers] = useState([
     { id: "1", name: "Jane Doe", email: "jane.doe@example.com", status: "active" },
     { id: "2", name: "Bob Smith", email: "bob.smith@example.com", status: "pending" },
+  ]);
+  const [achievements] = useState([
+      { id: 1, name: "Good Boy Badge" },
+      { id: 2, name: "Social Butterfly" }
   ]);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -131,6 +136,23 @@ const UserProfile = () => {
           </section>
 
           <Separator />
+          
+          {/* Achievements Section */}
+          <section className="space-y-4">
+            <h2 className="text-lg font-semibold">Achievements</h2>
+            <Card className="p-4">
+              <div className="flex flex-wrap gap-2">
+                {achievements.map((achievement) => (
+                  <Badge key={achievement.id} variant="secondary" className="text-sm">
+                    <Award className="w-4 h-4 mr-1" />
+                    {achievement.name}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
+          </section>
+
+          <Separator />
 
           {/* Family Members */}
           <section className="space-y-4">
@@ -182,12 +204,11 @@ const UserProfile = () => {
                       <div className="flex items-center space-x-2">
                         <h3 className="font-medium">{member.name}</h3>
                         <span
-                          className={cn(
-                            "text-xs px-2 py-0.5 rounded-full",
+                          className={`text-xs px-2 py-0.5 rounded-full ${
                             member.status === "active"
                               ? "bg-primary/10 text-primary"
                               : "bg-muted text-muted-foreground"
-                          )}
+                          }`}
                         >
                           {member.status}
                         </span>
@@ -230,7 +251,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(" ");
-}
