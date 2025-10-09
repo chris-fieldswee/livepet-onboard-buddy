@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Home, Plus, Compass, Heart, BarChart2, Stethoscope } from "lucide-react";
+import { Home, Plus, Heart, BarChart2, Stethoscope } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const BottomNav = () => {
@@ -12,7 +12,6 @@ export const BottomNav = () => {
     { icon: Plus, label: "Record", path: "/record-activity" },
     { icon: Stethoscope, label: "Health", path: "/health" },
     { icon: BarChart2, label: "Tracker", path: "/tracker" },
-    { icon: Compass, label: "Explore", path: "/explore" },
   ];
 
   return (
@@ -20,7 +19,7 @@ export const BottomNav = () => {
       <div className="max-w-[428px] mx-auto flex items-center justify-around h-16 px-4">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = location.pathname === item.path;
+          const isActive = location.pathname.startsWith(item.path) && (item.path !== '/' || location.pathname === '/');
           
           return (
             <button
