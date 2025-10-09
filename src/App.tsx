@@ -16,6 +16,8 @@ import CommunityFeed from "./pages/CommunityFeed";
 import ExplorePage from "./pages/ExplorePage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import LogActivity from "./pages/LogActivity";
+import ActivityTracker from "./pages/ActivityTracker";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +39,8 @@ const App = () => (
           <Route path="/record-activity" element={<RecordActivity />} />
           <Route path="/feed" element={<CommunityFeed />} />
           <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/log-activity" element={<LogActivity />} />
+          <Route path="/tracker" element={<ActivityTracker />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
