@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { MobileContainer } from "@/components/MobileContainer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { PawPrint, Calendar, Heart, Activity, Bell, User, ChevronRight } from "lucide-react";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const petProfile = {
     name: "Max",
     species: "Dog",
@@ -27,7 +29,7 @@ const Dashboard = () => {
               <Button variant="ghost" size="icon" className="rounded-full">
                 <Bell className="w-5 h-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full">
+              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/profile")}>
                 <User className="w-5 h-5" />
               </Button>
             </div>
@@ -47,6 +49,7 @@ const Dashboard = () => {
                   variant="secondary"
                   size="sm"
                   className="shrink-0 ml-3"
+                  onClick={() => navigate("/pet-profile")}
                 >
                   Complete
                 </Button>
@@ -57,7 +60,7 @@ const Dashboard = () => {
 
         {/* Pet Profile Card */}
         <div className="p-6 space-y-6">
-          <Card className="p-6">
+          <Card className="p-6 cursor-pointer hover:bg-muted/50 transition-colors" onClick={() => navigate("/pet-profile")}>
             <div className="flex items-center space-x-4">
               <div className="w-20 h-20 rounded-2xl overflow-hidden bg-muted">
                 <img
