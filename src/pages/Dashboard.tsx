@@ -86,7 +86,7 @@ const Dashboard = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
               <div className="grid grid-cols-2 gap-3">
-                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer">
+                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => navigate("/health")}>
                   <div className="space-y-2">
                     <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
                       <Calendar className="w-5 h-5" />
@@ -96,7 +96,7 @@ const Dashboard = () => {
                   </div>
                 </Card>
 
-                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer">
+                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => navigate("/health-records")}>
                   <div className="space-y-2">
                     <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
                       <Heart className="w-5 h-5" />
@@ -106,7 +106,7 @@ const Dashboard = () => {
                   </div>
                 </Card>
 
-                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer">
+                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => navigate("/tracker")}>
                   <div className="space-y-2">
                     <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
                       <Activity className="w-5 h-5" />
@@ -116,7 +116,7 @@ const Dashboard = () => {
                   </div>
                 </Card>
 
-                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer">
+                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => navigate("/health-records")}>
                   <div className="space-y-2">
                     <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
                       <PawPrint className="w-5 h-5" />
