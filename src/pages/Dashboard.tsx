@@ -3,7 +3,7 @@ import { MobileContainer } from "@/components/MobileContainer";
 import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { PawPrint, Calendar, Heart, Activity, Bell, User, ChevronRight, Stethoscope, Map } from "lucide-react";
+import { PawPrint, Calendar, Heart, Activity, Bell, User, ChevronRight, Stethoscope, Map, Compass, GraduationCap } from "lucide-react";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -30,14 +30,14 @@ const Dashboard = () => {
               <h1 className="text-2xl font-bold">Livepet</h1>
             </div>
             <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/health")}>
-                <Stethoscope className="w-5 h-5" />
-              </Button>
               <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/map")}>
                 <Map className="w-5 h-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <Bell className="w-5 h-5" />
+              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/training")}>
+                <GraduationCap className="w-5 h-5" />
+              </Button>
+              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/explore")}>
+                <Compass className="w-5 h-5" />
               </Button>
               <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/profile")}>
                 <User className="w-5 h-5" />
