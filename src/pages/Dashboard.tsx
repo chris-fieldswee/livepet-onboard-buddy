@@ -20,7 +20,10 @@ const Dashboard = () => {
         {/* Header */}
         <header className="sticky top-0 z-10 bg-background p-6 pb-4 border-b">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
+            <div
+              className="flex items-center space-x-3 cursor-pointer"
+              onClick={() => navigate("/signup")}
+            >
               <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
                 <PawPrint className="w-6 h-6 text-primary-foreground" />
               </div>
