@@ -15,6 +15,7 @@ import RecordActivity from "./pages/RecordActivity";
 import CommunityFeed from "./pages/CommunityFeed";
 import ExplorePage from "./pages/ExplorePage";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
