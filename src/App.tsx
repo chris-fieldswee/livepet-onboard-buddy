@@ -11,6 +11,9 @@ import Onboarding from "./pages/Onboarding";
 import Dashboard from "./pages/Dashboard";
 import CompletePetProfile from "./pages/CompletePetProfile";
 import UserProfile from "./pages/UserProfile";
+import RecordActivity from "./pages/RecordActivity";
+import CommunityFeed from "./pages/CommunityFeed";
+import ExplorePage from "./pages/ExplorePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +32,9 @@ const App = () => (
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/pet-profile" element={<CompletePetProfile />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/record-activity" element={<RecordActivity />} />
+          <Route path="/feed" element={<CommunityFeed />} />
+          <Route path="/explore" element={<ExplorePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

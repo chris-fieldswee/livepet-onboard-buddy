@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { MobileContainer } from "@/components/MobileContainer";
+import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { PawPrint, Calendar, Heart, Activity, Bell, User, ChevronRight } from "lucide-react";
@@ -133,6 +134,8 @@ const Dashboard = () => {
             </Card>
           </div>
         </div>
+
+        <BottomNav />
       </div>
     </MobileContainer>
   );
