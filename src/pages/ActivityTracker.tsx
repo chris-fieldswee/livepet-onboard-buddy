@@ -3,7 +3,7 @@ import { MobileContainer } from "@/components/MobileContainer";
 import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Plus } from "lucide-react";
 
 const ActivityTracker = () => {
   const navigate = useNavigate();
@@ -11,11 +11,17 @@ const ActivityTracker = () => {
   return (
     <MobileContainer>
       <div className="flex flex-col min-h-screen">
-        <header className="sticky top-0 bg-background border-b p-4 flex items-center space-x-3 z-10">
-          <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full">
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-          <h1 className="text-xl font-semibold">Activity Tracker</h1>
+        <header className="sticky top-0 bg-background border-b p-4 flex items-center justify-between z-10">
+            <div className="flex items-center space-x-3">
+                <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full">
+                    <ArrowLeft className="w-5 h-5" />
+                </Button>
+                <h1 className="text-xl font-semibold">Activity Tracker</h1>
+            </div>
+            <Button size="sm" onClick={() => navigate("/log-activity")}>
+                <Plus className="w-4 h-4 mr-2" />
+                Add Activity
+            </Button>
         </header>
 
         <div className="flex-1 p-6 space-y-8">
