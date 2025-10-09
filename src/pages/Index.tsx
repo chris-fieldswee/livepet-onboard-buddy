@@ -12,7 +12,10 @@ const Index = () => {
         <div className="flex-1 flex flex-col justify-center items-center space-y-12">
           <div className="text-center space-y-6">
             <div className="flex justify-center">
-              <div className="w-24 h-24 bg-primary rounded-3xl flex items-center justify-center">
+              <div
+                className="w-24 h-24 bg-primary rounded-3xl flex items-center justify-center cursor-pointer"
+                onClick={() => navigate("/signup")}
+              >
                 <PawPrint className="w-16 h-16 text-primary-foreground" />
               </div>
             </div>
