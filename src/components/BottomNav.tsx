@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Home, Plus, Compass, Heart, BarChart2 } from "lucide-react";
+import { Home, Plus, Compass, Heart, BarChart2, Stethoscope } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const BottomNav = () => {
@@ -10,6 +10,7 @@ export const BottomNav = () => {
     { icon: Home, label: "Home", path: "/" },
     { icon: Heart, label: "Feed", path: "/feed" },
     { icon: Plus, label: "Record", path: "/record-activity" },
+    { icon: Stethoscope, label: "Health", path: "/health" },
     { icon: BarChart2, label: "Tracker", path: "/tracker" },
     { icon: Compass, label: "Explore", path: "/explore" },
   ];
