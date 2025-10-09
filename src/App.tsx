@@ -22,6 +22,8 @@ import Health from "./pages/Health";
 import HealthRecords from "./pages/HealthRecords";
 import Nutrition from "./pages/Nutrition";
 import MapPage from "./pages/Map";
+import Training from "./pages/Training";
+import TrainingModule from "./pages/TrainingModule";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +51,8 @@ const App = () => (
           <Route path="/health-records" element={<HealthRecords />} />
           <Route path="/nutrition" element={<Nutrition />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/training" element={<Training />} />
+          <Route path="/training/:moduleId" element={<TrainingModule />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
