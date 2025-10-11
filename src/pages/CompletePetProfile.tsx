@@ -344,13 +344,13 @@ const CompletePetProfile = () => {
             <div className="space-y-3">
                 <Label>Preventive Care</Label>
                 <div className="space-y-2">
-                    <div className="flex items-center space-x-3"><Checkbox id="flea-tick" onCheckedChange={() => handleCheckboxChange("flea-tick")} /><Label htmlFor="flea-tick" className="font-normal">Flea/Tick prevention</Label></div>
+                    <div className="flex items-center space-x-3"><Checkbox id="flea-tick" checked={formData.preventiveCare.includes('flea-tick')} onCheckedChange={() => handleCheckboxChange("flea-tick")} /><Label htmlFor="flea-tick" className="font-normal">Flea/Tick prevention</Label></div>
                     {isDog ? (
-                      <div className="flex items-center space-x-3"><Checkbox id="heartworm" onCheckedChange={() => handleCheckboxChange("heartworm")} /><Label htmlFor="heartworm" className="font-normal">Heartworm prevention</Label></div>
+                      <div className="flex items-center space-x-3"><Checkbox id="heartworm" checked={formData.preventiveCare.includes('heartworm')} onCheckedChange={() => handleCheckboxChange("heartworm")} /><Label htmlFor="heartworm" className="font-normal">Heartworm prevention</Label></div>
                     ) : (
-                      <div className="flex items-center space-x-3"><Checkbox id="deworming" onCheckedChange={() => handleCheckboxChange("deworming")} /><Label htmlFor="deworming" className="font-normal">Deworming</Label></div>
+                      <div className="flex items-center space-x-3"><Checkbox id="deworming" checked={formData.preventiveCare.includes('deworming')} onCheckedChange={() => handleCheckboxChange("deworming")} /><Label htmlFor="deworming" className="font-normal">Deworming</Label></div>
                     )}
-                    <div className="flex items-center space-x-3"><Checkbox id="dental" onCheckedChange={() => handleCheckboxChange("dental")} /><Label htmlFor="dental" className="font-normal">Dental care routine</Label></div>
+                    <div className="flex items-center space-x-3"><Checkbox id="dental" checked={formData.preventiveCare.includes('dental')} onCheckedChange={() => handleCheckboxChange("dental")} /><Label htmlFor="dental" className="font-normal">Dental care routine</Label></div>
                 </div>
             </div>
         </section>
@@ -383,7 +383,7 @@ const CompletePetProfile = () => {
   return (
     <MobileContainer>
       <div className="flex flex-col h-screen">
-        <header className="sticky top-0 bg-background border-b p-4 flex items-center space-x-3 z-10">
+        <header className="bg-background border-b p-4 flex items-center space-x-3 z-10">
           <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full">
             <ArrowLeft className="w-5 h-5" />
           </Button>
@@ -418,7 +418,7 @@ const CompletePetProfile = () => {
                   </Button>
                 ) : (
                   <Button type="submit" className="w-full h-12 text-base font-medium">
-                    Save
+                    Save Profile
                   </Button>
                 )}
             </div>
