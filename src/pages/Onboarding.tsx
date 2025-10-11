@@ -94,7 +94,7 @@ const Onboarding = () => {
                   You’re off to a great start
                 </h1>
                 <p className="text-muted-foreground">
-                  Your pet’s basic profile is ready. Add a few more details to
+                  {petName}'s basic profile is ready. Add a few more details to
                   unlock personalized insights, health reminders, and daily care
                   suggestions.
                 </p>
