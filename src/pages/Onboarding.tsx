@@ -51,13 +51,18 @@ const Onboarding = () => {
     <MobileContainer>
       <div className="flex flex-col min-h-screen p-6">
         <div className="flex-1 flex flex-col justify-center">
+          <div className="text-center text-sm text-muted-foreground mb-4">
+            {step === 1 && "Step 1 of 3"}
+            {step === 2 && "Step 2 of 3"}
+            {step === 3 && "Step 3 of 3"}
+          </div>
+
           <div className="mb-8">
-            <Label className="text-sm text-muted-foreground">
-              {step === 1 && "Step 1 of 3 — Add Your Pet"}
-              {step === 2 && "Step 2 of 3 — Personalize Your Experience"}
-              {step === 3 && "Step 3 of 3 — Almost Done"}
-            </Label>
-            <Progress value={progressValue} className="mt-2" />
+            <div className="flex justify-between items-center mb-2">
+              <Label className="text-sm font-medium">Pet Profile Progress</Label>
+              <span className="text-sm font-medium text-muted-foreground">{progressValue}%</span>
+            </div>
+            <Progress value={progressValue} />
           </div>
 
           <div className="text-center space-y-4">
