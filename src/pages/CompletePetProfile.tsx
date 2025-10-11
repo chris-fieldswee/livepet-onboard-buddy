@@ -392,7 +392,10 @@ const CompletePetProfile = () => {
 
         <form onSubmit={handleSubmit} className="flex-1 flex flex-col overflow-hidden">
           <div className="flex-1 p-6 space-y-8 overflow-y-auto">
-            <div className="mb-4">
+            <div className="text-center text-sm text-muted-foreground mb-4">
+              Step {step} of 4
+            </div>
+            <div className="mb-8">
               <div className="flex justify-between items-center mb-2">
                 <Label className="text-sm font-medium">Profile Completion</Label>
                 <span className="text-sm font-medium text-muted-foreground">{progress}%</span>
@@ -415,7 +418,7 @@ const CompletePetProfile = () => {
                   </Button>
                 ) : (
                   <Button type="submit" className="w-full h-12 text-base font-medium">
-                    Save Profile
+                    Save
                   </Button>
                 )}
             </div>
