@@ -35,7 +35,7 @@ const Onboarding = () => {
       setStep(2);
     } else if (step === 2) {
       setStep(3);
-      toast.success("Pet profile created!");
+      toast.success("Basic profile created!");
     }
   };
 
@@ -45,11 +45,16 @@ const Onboarding = () => {
     );
   };
 
+  const progressValue = step === 1 ? 10 : 25;
+
   return (
     <MobileContainer>
       <div className="flex flex-col min-h-screen p-6">
         <div className="flex-1 flex flex-col justify-center">
-          <Progress value={(step / 3) * 100} className="mb-8" />
+          <div className="mb-8">
+            <Label className="text-sm text-muted-foreground">Pet Profile Progress</Label>
+            <Progress value={progressValue} className="mt-2" />
+          </div>
 
           <div className="text-center space-y-4">
             {step === 1 && (
@@ -66,19 +71,17 @@ const Onboarding = () => {
                   What are your goals?
                 </h1>
                 <p className="text-muted-foreground">
-                  Select all that apply. This will help us personalize your
-                  experience.
+                  This helps us personalize your app experience.
                 </p>
               </>
             )}
             {step === 3 && (
               <>
                 <h1 className="text-3xl font-bold tracking-tight">
-                  You're All Set!
+                  Great Start!
                 </h1>
                 <p className="text-muted-foreground">
-                  You can now explore the app or add more details to your pet's
-                  profile.
+                  Your basic profile is ready. Add more details to unlock personalized insights.
                 </p>
               </>
             )}
@@ -121,7 +124,7 @@ const Onboarding = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="petName">Pet's Name</Label>
+                <Label htmlFor="petName">Pet's Name*</Label>
                 <Input
                   id="petName"
                   type="text"
@@ -134,7 +137,7 @@ const Onboarding = () => {
               </div>
 
               <div className="space-y-3">
-                <Label>Species</Label>
+                <Label>Species*</Label>
                 <RadioGroup
                   value={species}
                   onValueChange={(value) =>
