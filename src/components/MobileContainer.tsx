@@ -7,7 +7,7 @@ interface MobileContainerProps {
 export const MobileContainer = ({ children }: MobileContainerProps) => {
   return (
     <div className="min-h-screen bg-muted flex items-center justify-center">
-      <div className="w-full max-w-[428px] h-screen bg-background shadow-2xl overflow-hidden">
+      <div className="w-full max-w-[428px] min-h-screen bg-background shadow-2xl overflow-hidden">
         {children}
       </div>
     </div>
