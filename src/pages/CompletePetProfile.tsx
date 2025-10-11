@@ -382,7 +382,7 @@ const CompletePetProfile = () => {
 
   return (
     <MobileContainer>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col h-screen">
         <header className="sticky top-0 bg-background border-b p-4 flex items-center space-x-3 z-10">
           <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full">
             <ArrowLeft className="w-5 h-5" />
