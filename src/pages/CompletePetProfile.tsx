@@ -98,8 +98,10 @@ const CompletePetProfile = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Pet profile updated successfully!");
-    navigate("/");
+    if (step === 4) {
+      toast.success("Pet profile updated successfully!");
+      navigate("/");
+    }
   };
   
   const handleNext = () => setStep(prev => Math.min(prev + 1, 4));
@@ -390,46 +392,44 @@ const CompletePetProfile = () => {
           <h1 className="text-xl font-semibold">Complete Pet Profile</h1>
         </header>
 
-        <form onSubmit={handleSubmit} className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex-1 p-6 space-y-8 overflow-y-auto">
-            <div className="text-center text-sm text-muted-foreground mb-4">
-              Step {step} of 4
-            </div>
-            <div className="mb-8">
-              <div className="flex justify-between items-center mb-2">
-                <Label className="text-sm font-medium">Profile Completion</Label>
-                <span className="text-sm font-medium text-muted-foreground">{progress}%</span>
-              </div>
-              <Progress value={progress} />
-            </div>
-            {renderFormContent()}
+        <div className="flex-1 overflow-y-auto p-6 space-y-8">
+          <div className="text-center text-sm text-muted-foreground mb-4">
+            Step {step} of 4
           </div>
-          
-          <div className="p-4 border-t bg-background">
-            <div className="flex gap-4">
-                {step > 1 && (
-                  <Button type="button" variant="outline" className="w-full h-12 text-base font-medium" onClick={handleBack}>
-                      Back
-                  </Button>
-                )}
-                {step < 4 ? (
-                  <Button type="button" className="w-full h-12 text-base font-medium" onClick={handleNext}>
-                    Continue
-                  </Button>
-                ) : (
-                  <Button type="submit" className="w-full h-12 text-base font-medium">
-                    Save Profile
-                  </Button>
-                )}
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-2">
+              <Label className="text-sm font-medium">Profile Completion</Label>
+              <span className="text-sm font-medium text-muted-foreground">{progress}%</span>
             </div>
-            <p className="text-xs text-muted-foreground text-center mt-2">
-              {species === 'dog' 
-                ? "You can update this information anytime — Livepet will adjust insights and reminders automatically."
-                : "Great work — your cat’s profile is ready to unlock tailored insights and gentle reminders that fit their unique lifestyle."
-              }
-            </p>
+            <Progress value={progress} />
           </div>
-        </form>
+          {renderFormContent()}
+        </div>
+        
+        <div className="p-4 border-t bg-background">
+          <div className="flex gap-4">
+              {step > 1 && (
+                <Button type="button" variant="outline" className="w-full h-12 text-base font-medium" onClick={handleBack}>
+                    Back
+                </Button>
+              )}
+              {step < 4 ? (
+                <Button type="button" className="w-full h-12 text-base font-medium" onClick={handleNext}>
+                  Continue
+                </Button>
+              ) : (
+                <Button type="button" className="w-full h-12 text-base font-medium" onClick={handleSubmit}>
+                  Save Profile
+                </Button>
+              )}
+          </div>
+          <p className="text-xs text-muted-foreground text-center mt-2">
+            {species === 'dog' 
+              ? "You can update this information anytime — Livepet will adjust insights and reminders automatically."
+              : "Great work — your cat’s profile is ready to unlock tailored insights and gentle reminders that fit their unique lifestyle."
+            }
+          </p>
+        </div>
       </div>
     </MobileContainer>
   );
