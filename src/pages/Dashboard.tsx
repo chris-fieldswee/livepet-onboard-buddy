@@ -1,155 +1,220 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MobileContainer } from "@/components/MobileContainer";
-import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { PawPrint, Calendar, Heart, Activity, Bell, User, ChevronRight, Stethoscope, Map, Compass, GraduationCap } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { MobileContainer } from "@/components/MobileContainer";
+import { Progress } from "@/components/ui/progress";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Camera, Upload } from "lucide-react";
+import { toast } from "sonner";
 
-const Dashboard = () => {
+const Onboarding = () => {
   const navigate = useNavigate();
-  const petProfile = {
-    name: "Max",
-    species: "Dog",
-    image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop",
-    isComplete: false,
+  const [step, setStep] = useState(1);
+  const [petName, setPetName] = useState("");
+  const [species, setSpecies] = useState<"dog" | "cat" | "">("");
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [goals, setGoals] = useState<string[]>([]);
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleNextStep = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (step === 1 && petName && species) {
+      setStep(2);
+    } else if (step === 2) {
+      setStep(3);
+      toast.success("Pet profile created!");
+    }
+  };
+
+  const handleGoalChange = (goal: string) => {
+    setGoals((prev) =>
+      prev.includes(goal) ? prev.filter((g) => g !== goal) : [...prev, goal]
+    );
   };
 
   return (
     <MobileContainer>
-      <div className="flex flex-col min-h-screen">
-        {/* Header */}
-        <header className="sticky top-0 z-10 bg-background p-6 pb-4 border-b">
-          <div className="flex items-center justify-between">
-            <div
-              className="flex items-center space-x-3 cursor-pointer"
-              onClick={() => navigate("/signup")}
-            >
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                <PawPrint className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <h1 className="text-2xl font-bold">Livepet</h1>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/map")}>
-                <Map className="w-5 h-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/training")}>
-                <GraduationCap className="w-5 h-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/explore")}>
-                <Compass className="w-5 h-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/profile")}>
-                <User className="w-5 h-5" />
-              </Button>
-            </div>
-          </div>
-        </header>
+      <div className="flex flex-col min-h-screen p-6">
+        <div className="flex-1 flex flex-col justify-center">
+          <Progress value={(step / 3) * 100} className="mb-8" />
 
-        <div className="flex-1 overflow-y-auto pb-20">
-          {/* Complete Profile Banner */}
-          {!petProfile.isComplete && (
-            <div className="px-6 mt-6">
-              <Card className="p-4 bg-primary text-primary-foreground">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-1 flex-1">
-                    <h3 className="font-semibold">Complete Your Pet's Profile</h3>
-                    <p className="text-sm opacity-90">Add more details to unlock all features</p>
-                  </div>
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    className="shrink-0 ml-3"
-                    onClick={() => navigate("/pet-profile")}
+          <div className="text-center space-y-4">
+            {step === 1 && (
+              <>
+                <h1 className="text-3xl font-bold tracking-tight">Add Your Pet</h1>
+                <p className="text-muted-foreground">
+                  Let's create a profile for your furry friend
+                </p>
+              </>
+            )}
+            {step === 2 && (
+              <>
+                <h1 className="text-3xl font-bold tracking-tight">
+                  What are your goals?
+                </h1>
+                <p className="text-muted-foreground">
+                  Select all that apply. This will help us personalize your
+                  experience.
+                </p>
+              </>
+            )}
+            {step === 3 && (
+              <>
+                <h1 className="text-3xl font-bold tracking-tight">
+                  You're All Set!
+                </h1>
+                <p className="text-muted-foreground">
+                  You can now explore the app or add more details to your pet's
+                  profile.
+                </p>
+              </>
+            )}
+          </div>
+
+          {step === 1 && (
+            <form onSubmit={handleNextStep} className="space-y-6 mt-8">
+              <div className="flex flex-col items-center space-y-4">
+                <div className="relative">
+                  {profileImage ? (
+                    <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary">
+                      <img
+                        src={profileImage}
+                        alt="Pet"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-32 h-32 rounded-full bg-muted flex items-center justify-center border-2 border-dashed border-border">
+                      <Camera className="w-12 h-12 text-muted-foreground" />
+                    </div>
+                  )}
+                  <label
+                    htmlFor="photo-upload"
+                    className="absolute bottom-0 right-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center cursor-pointer hover:bg-primary/90 transition-colors"
                   >
-                    Complete
-                  </Button>
+                    <Upload className="w-5 h-5 text-primary-foreground" />
+                    <input
+                      id="photo-upload"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                    />
+                  </label>
                 </div>
-              </Card>
+                <p className="text-sm text-muted-foreground">
+                  Upload a photo of your pet
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="petName">Pet's Name</Label>
+                <Input
+                  id="petName"
+                  type="text"
+                  placeholder="e.g., Max, Luna"
+                  value={petName}
+                  onChange={(e) => setPetName(e.target.value)}
+                  className="h-12"
+                  required
+                />
+              </div>
+
+              <div className="space-y-3">
+                <Label>Species</Label>
+                <RadioGroup
+                  value={species}
+                  onValueChange={(value) =>
+                    setSpecies(value as "dog" | "cat")
+                  }
+                >
+                  <div className="flex items-center space-x-3 border rounded-lg p-4 cursor-pointer hover:bg-muted/50 transition-colors">
+                    <RadioGroupItem value="dog" id="dog" />
+                    <Label htmlFor="dog" className="flex-1 cursor-pointer">
+                      Dog
+                    </Label>
+                  </div>
+                  <div className="flex items-center space-x-3 border rounded-lg p-4 cursor-pointer hover:bg-muted/50 transition-colors">
+                    <RadioGroupItem value="cat" id="cat" />
+                    <Label htmlFor="cat" className="flex-1 cursor-pointer">
+                      Cat
+                    </Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <Button type="submit" className="w-full h-12 text-base font-medium">
+                Continue
+              </Button>
+            </form>
+          )}
+
+          {step === 2 && (
+            <div className="space-y-6 mt-8">
+              {[
+                "Track daily activities (walks, food, etc.)",
+                "Manage health (appointments, medications, etc.)",
+                "Find fun things to do (events, challenges, etc.)",
+                "Get training and behavior advice",
+              ].map((goal) => (
+                <div
+                  key={goal}
+                  className="flex items-center space-x-3 border rounded-lg p-4 cursor-pointer hover:bg-muted/50 transition-colors"
+                  onClick={() => handleGoalChange(goal)}
+                >
+                  <Checkbox
+                    id={goal}
+                    checked={goals.includes(goal)}
+                    onCheckedChange={() => handleGoalChange(goal)}
+                  />
+                  <Label htmlFor={goal} className="flex-1 cursor-pointer">
+                    {goal}
+                  </Label>
+                </div>
+              ))}
+              <Button
+                onClick={handleNextStep}
+                className="w-full h-12 text-base font-medium"
+              >
+                Finish
+              </Button>
             </div>
           )}
 
-          {/* Pet Profile Card */}
-          <div className="p-6 space-y-6">
-            <Card className="p-6 cursor-pointer hover:bg-muted/50 transition-colors" onClick={() => navigate("/pet-profile")}>
-              <div className="flex items-center space-x-4">
-                <div className="w-20 h-20 rounded-2xl overflow-hidden bg-muted">
-                  <img
-                    src={petProfile.image}
-                    alt={petProfile.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h2 className="text-2xl font-bold">{petProfile.name}</h2>
-                  <p className="text-muted-foreground">{petProfile.species}</p>
-                </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
-              </div>
-            </Card>
-
-            {/* Quick Actions */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
-              <div className="grid grid-cols-2 gap-3">
-                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => navigate("/health")}>
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-                      <Calendar className="w-5 h-5" />
-                    </div>
-                    <h4 className="font-semibold">Appointments</h4>
-                    <p className="text-sm text-muted-foreground">Schedule vet visits</p>
-                  </div>
-                </Card>
-
-                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => navigate("/health-records")}>
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-                      <Heart className="w-5 h-5" />
-                    </div>
-                    <h4 className="font-semibold">Health Log</h4>
-                    <p className="text-sm text-muted-foreground">Track wellness</p>
-                  </div>
-                </Card>
-
-                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => navigate("/tracker")}>
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-                      <Activity className="w-5 h-5" />
-                    </div>
-                    <h4 className="font-semibold">Activities</h4>
-                    <p className="text-sm text-muted-foreground">Log daily walks</p>
-                  </div>
-                </Card>
-
-                <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => navigate("/health-records")}>
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-                      <PawPrint className="w-5 h-5" />
-                    </div>
-                    <h4 className="font-semibold">Records</h4>
-                    <p className="text-sm text-muted-foreground">View history</p>
-                  </div>
-                </Card>
-              </div>
+          {step === 3 && (
+            <div className="space-y-4 mt-8">
+              <Button
+                onClick={() => navigate("/pet-profile")}
+                className="w-full h-12 text-base font-medium"
+              >
+                Complete Pet's Profile
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => navigate("/")}
+                className="w-full h-12 text-base font-medium"
+              >
+                Go to Dashboard
+              </Button>
             </div>
-
-            {/* Recent Activity */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Recent Activity</h3>
-              <Card className="p-4">
-                <p className="text-center text-muted-foreground py-8">
-                  No recent activity. Start tracking your pet's health!
-                </p>
-              </Card>
-            </div>
-          </div>
+          )}
         </div>
-
-        <BottomNav />
       </div>
     </MobileContainer>
   );
 };
 
-export default Dashboard;
+export default Onboarding;
