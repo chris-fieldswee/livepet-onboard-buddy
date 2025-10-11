@@ -15,8 +15,8 @@ export const BottomNav = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-background border-t z-50">
-      <div className="max-w-[428px] mx-auto flex items-center justify-around h-16 px-4">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[428px] bg-background border-t z-50">
+      <div className="flex items-center justify-around h-16 px-4">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = location.pathname.startsWith(item.path) && (item.path !== '/' || location.pathname === '/');
