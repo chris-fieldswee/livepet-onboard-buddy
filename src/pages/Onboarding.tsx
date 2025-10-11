@@ -52,36 +52,46 @@ const Onboarding = () => {
       <div className="flex flex-col min-h-screen p-6">
         <div className="flex-1 flex flex-col justify-center">
           <div className="mb-8">
-            <Label className="text-sm text-muted-foreground">Pet Profile Progress</Label>
+            <Label className="text-sm text-muted-foreground">
+              {step === 1 && "Step 1 of 3 — Add Your Pet"}
+              {step === 2 && "Step 2 of 3 — Personalize Your Experience"}
+              {step === 3 && "Step 3 of 3 — Almost Done"}
+            </Label>
             <Progress value={progressValue} className="mt-2" />
           </div>
 
           <div className="text-center space-y-4">
             {step === 1 && (
               <>
-                <h1 className="text-3xl font-bold tracking-tight">Add Your Pet</h1>
+                <h1 className="text-3xl font-bold tracking-tight">
+                  Let’s get to know your pet
+                </h1>
                 <p className="text-muted-foreground">
-                  Let's create a profile for your furry friend
+                  Start by creating a simple profile so Livepet can understand
+                  your pet’s unique needs and routines.
                 </p>
               </>
             )}
             {step === 2 && (
               <>
                 <h1 className="text-3xl font-bold tracking-tight">
-                  What are your goals?
+                  What would you like Livepet to help with?
                 </h1>
                 <p className="text-muted-foreground">
-                  This helps us personalize your app experience.
+                  Choose your goals so we can tailor tips, reminders, and
+                  insights just for you and your pet.
                 </p>
               </>
             )}
             {step === 3 && (
               <>
                 <h1 className="text-3xl font-bold tracking-tight">
-                  Great Start!
+                  You’re off to a great start
                 </h1>
                 <p className="text-muted-foreground">
-                  Your basic profile is ready. Add more details to unlock personalized insights.
+                  Your pet’s basic profile is ready. Add a few more details to
+                  unlock personalized insights, health reminders, and daily care
+                  suggestions.
                 </p>
               </>
             )}
@@ -159,41 +169,71 @@ const Onboarding = () => {
                 </RadioGroup>
               </div>
 
-              <Button type="submit" className="w-full h-12 text-base font-medium">
+              <Button
+                type="submit"
+                className="w-full h-12 text-base font-medium"
+              >
                 Continue
               </Button>
+              <p className="text-xs text-muted-foreground text-center">
+                You can add more details later — this just gets us started.
+              </p>
             </form>
           )}
 
           {step === 2 && (
             <div className="space-y-6 mt-8">
               {[
-                "Track daily activities (walks, food, etc.)",
-                "Manage health (appointments, medications, etc.)",
-                "Find fun things to do (events, challenges, etc.)",
-                "Get training and behavior advice",
+                {
+                  title: "Track daily activities (walks, meals, playtime)",
+                  description: "Keep your pet’s routine consistent and balanced.",
+                },
+                {
+                  title: "Manage health and wellness (appointments, medications, reminders)",
+                  description: "Stay organized and confident about your pet’s care.",
+                },
+                {
+                  title: "Discover new activities (events, challenges, ideas)",
+                  description: "Find fun, meaningful ways to spend time together.",
+                },
+                {
+                  title: "Get training and behavior guidance",
+                  description: "Support your pet’s growth with expert advice and gentle techniques.",
+                },
               ].map((goal) => (
                 <div
-                  key={goal}
-                  className="flex items-center space-x-3 border rounded-lg p-4 cursor-pointer hover:bg-muted/50 transition-colors"
-                  onClick={() => handleGoalChange(goal)}
+                  key={goal.title}
+                  className="flex items-start space-x-4 border rounded-lg p-4 cursor-pointer hover:bg-muted/50 transition-colors"
+                  onClick={() => handleGoalChange(goal.title)}
                 >
                   <Checkbox
-                    id={goal}
-                    checked={goals.includes(goal)}
-                    onCheckedChange={() => handleGoalChange(goal)}
+                    id={goal.title}
+                    checked={goals.includes(goal.title)}
+                    onCheckedChange={() => handleGoalChange(goal.title)}
+                    className="mt-1"
                   />
-                  <Label htmlFor={goal} className="flex-1 cursor-pointer">
-                    {goal}
-                  </Label>
+                  <div className="flex-1">
+                    <Label
+                      htmlFor={goal.title}
+                      className="font-semibold cursor-pointer"
+                    >
+                      {goal.title}
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      {goal.description}
+                    </p>
+                  </div>
                 </div>
               ))}
               <Button
                 onClick={handleNextStep}
                 className="w-full h-12 text-base font-medium"
               >
-                Finish
+                Continue
               </Button>
+              <p className="text-xs text-muted-foreground text-center">
+                You can update your goals anytime — we’ll grow with you.
+              </p>
             </div>
           )}
 
@@ -203,7 +243,7 @@ const Onboarding = () => {
                 onClick={() => navigate("/pet-profile")}
                 className="w-full h-12 text-base font-medium"
               >
-                Complete Pet's Profile
+                Complete Profile
               </Button>
               <Button
                 variant="outline"
@@ -212,6 +252,10 @@ const Onboarding = () => {
               >
                 Go to Dashboard
               </Button>
+              <p className="text-xs text-muted-foreground text-center">
+                You can always finish your setup later — everything you’ve done
+                so far is saved.
+              </p>
             </div>
           )}
         </div>
