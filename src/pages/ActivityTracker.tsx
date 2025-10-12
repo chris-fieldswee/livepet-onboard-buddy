@@ -10,7 +10,7 @@ const ActivityTracker = () => {
 
   return (
     <MobileContainer>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col h-screen">
         <header className="sticky top-0 bg-background border-b p-4 flex items-center justify-between z-10">
             <div className="flex items-center space-x-3">
                 <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full">
@@ -24,7 +24,7 @@ const ActivityTracker = () => {
             </Button>
         </header>
 
-        <div className="flex-1 p-6 space-y-8">
+        <div className="flex-1 overflow-y-auto p-6 space-y-8 pb-20">
           <section className="space-y-4">
             <h2 className="text-lg font-semibold">Today's Log</h2>
             <Card className="p-4">
