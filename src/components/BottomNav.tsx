@@ -13,6 +13,10 @@ export const BottomNav = () => {
     { icon: Stethoscope, label: "Health", path: "/health" },
   ];
 
+  // Destructure the icons for correct JSX rendering
+  const LeftIcon = navItems[0].icon;
+  const RightIcon = navItems[1].icon;
+
   return (
     <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[428px] bg-background border-t z-50">
       <div className="flex items-center justify-around h-16 px-4">
@@ -24,7 +28,7 @@ export const BottomNav = () => {
             location.pathname === navItems[0].path ? "text-primary" : "text-muted-foreground"
           )}
         >
-          <navItems[0].icon className="w-6 h-6" />
+          <LeftIcon className="w-6 h-6" />
           <span className="text-xs font-medium">{navItems[0].label}</span>
         </button>
 
@@ -76,7 +80,7 @@ export const BottomNav = () => {
             location.pathname.startsWith(navItems[1].path) ? "text-primary" : "text-muted-foreground"
           )}
         >
-          <navItems[1].icon className="w-6 h-6" />
+          <RightIcon className="w-6 h-6" />
           <span className="text-xs font-medium">{navItems[1].label}</span>
         </button>
       </div>
