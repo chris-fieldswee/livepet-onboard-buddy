@@ -29,8 +29,7 @@ const Onboarding = () => {
     }
   };
 
-  const handleNextStep = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleNextStep = () => {
     if (step === 1 && petName && species) {
       setStep(2);
     } else if (step === 2) {
@@ -46,11 +45,13 @@ const Onboarding = () => {
   };
 
   const progressValue = step === 1 ? 10 : 25;
+  const isStep1Complete = petName !== "" && species !== "";
+  const isStep2Complete = goals.length > 0;
 
   return (
     <MobileContainer>
-      <div className="flex flex-col min-h-screen p-6">
-        <div className="flex-1 flex flex-col justify-center">
+      <div className="flex flex-col h-screen">
+        <div className="flex-1 flex flex-col justify-center p-6 overflow-y-auto">
           <div className="text-center text-sm text-muted-foreground mb-4">
             {step === 1 && "Step 1 of 3"}
             {step === 2 && "Step 2 of 3"}
@@ -103,7 +104,7 @@ const Onboarding = () => {
           </div>
 
           {step === 1 && (
-            <form onSubmit={handleNextStep} className="space-y-6 mt-8">
+            <div className="space-y-6 mt-8">
               <div className="flex flex-col items-center space-y-4">
                 <div className="relative">
                   {profileImage ? (
@@ -173,21 +174,11 @@ const Onboarding = () => {
                   </div>
                 </RadioGroup>
               </div>
-
-              <Button
-                type="submit"
-                className="w-full h-12 text-base font-medium"
-              >
-                Continue
-              </Button>
-              <p className="text-xs text-muted-foreground text-center">
-                You can add more details later — this just gets us started.
-              </p>
-            </form>
+            </div>
           )}
 
           {step === 2 && (
-            <div className="space-y-6 mt-8">
+            <div className="space-y-4 mt-8">
               {[
                 {
                   title: "Track daily activities (walks, meals, playtime)",
@@ -230,20 +221,45 @@ const Onboarding = () => {
                   </div>
                 </div>
               ))}
-              <Button
-                onClick={handleNextStep}
-                className="w-full h-12 text-base font-medium"
-              >
-                Continue
-              </Button>
-              <p className="text-xs text-muted-foreground text-center">
-                You can update your goals anytime — we’ll grow with you.
-              </p>
             </div>
           )}
 
           {step === 3 && (
-            <div className="space-y-4 mt-8">
+             <div className="flex flex-col items-center text-center mt-8">
+                {profileImage ? (
+                    <img src={profileImage} alt="Pet" className="w-32 h-32 rounded-full object-cover border-4 border-primary" />
+                ) : (
+                    <div className="w-32 h-32 rounded-full bg-muted flex items-center justify-center border-2 border-dashed border-border">
+                        <Camera className="w-12 h-12 text-muted-foreground" />
+                    </div>
+                )}
+            </div>
+          )}
+        </div>
+        
+        <div className="p-4 border-t bg-background">
+          {step === 1 && (
+            <>
+              <Button onClick={handleNextStep} disabled={!isStep1Complete} className="w-full h-12 text-base font-medium">
+                Continue
+              </Button>
+              <p className="text-xs text-muted-foreground text-center mt-2">
+                You can add more details later — this just gets us started.
+              </p>
+            </>
+          )}
+          {step === 2 && (
+            <>
+              <Button onClick={handleNextStep} disabled={!isStep2Complete} className="w-full h-12 text-base font-medium">
+                Continue
+              </Button>
+               <p className="text-xs text-muted-foreground text-center mt-2">
+                You can update your goals anytime — we’ll grow with you.
+              </p>
+            </>
+          )}
+          {step === 3 && (
+            <div className="space-y-4">
               <Button
                 onClick={() => navigate("/pet-profile")}
                 className="w-full h-12 text-base font-medium"
