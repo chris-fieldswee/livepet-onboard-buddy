@@ -1,26 +1,27 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { Home, Plus, Heart, Activity, FileText, HeartPulse } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/ui/drawer";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
 import { Button } from "./ui/button";
+import { useMobileContainer } from "@/context/MobileContainerContext";
+import { X } from "lucide-react";
 
 export const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { containerRef } = useMobileContainer();
 
   const navItems = [
     { icon: Home, label: "Pet", path: "/" },
     { icon: Heart, label: "Feed", path: "/feed" },
   ];
 
-  // Destructure the icons for correct JSX rendering
   const LeftIcon = navItems[0].icon;
   const RightIcon = navItems[1].icon;
 
   return (
     <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[428px] bg-background border-t z-50">
       <div className="flex items-center justify-around h-16 px-4">
-        {/* Left Nav Item */}
         <button
           onClick={() => navigate(navItems[0].path)}
           className={cn(
@@ -32,8 +33,7 @@ export const BottomNav = () => {
           <span className="text-xs font-medium">{navItems[0].label}</span>
         </button>
 
-        {/* Center "Record" Drawer */}
-        <Drawer modal={false}>
+        <Drawer container={containerRef?.current}>
           <DrawerTrigger asChild>
             <button className="flex flex-col items-center justify-center space-y-1 flex-1 h-full text-primary">
               <div className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center -mt-8 border-4 border-background">
@@ -69,10 +69,14 @@ export const BottomNav = () => {
                 </div>
               </Button>
             </div>
+             <DrawerClose asChild>
+                <Button variant="ghost" size="icon" className="absolute top-4 right-4 rounded-full">
+                    <X className="w-4 h-4" />
+                </Button>
+            </DrawerClose>
           </DrawerContent>
         </Drawer>
 
-        {/* Right Nav Item */}
         <button
           onClick={() => navigate(navItems[1].path)}
           className={cn(
