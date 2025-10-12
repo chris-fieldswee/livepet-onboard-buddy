@@ -81,13 +81,13 @@ const ExplorePage = () => {
 
   return (
     <MobileContainer>
-      <div className="flex flex-col min-h-screen pb-20">
+      <div className="flex flex-col h-screen">
         <header className="sticky top-0 bg-background border-b p-4 z-10">
           <h1 className="text-2xl font-bold">Explore</h1>
           <p className="text-sm text-muted-foreground">Events, challenges, and premium content</p>
         </header>
 
-        <div className="flex-1 p-4 space-y-6">
+        <div className="flex-1 p-4 space-y-6 overflow-y-auto pb-20">
           {/* Featured Section */}
           <section className="space-y-3">
             <div className="flex items-center justify-between">
