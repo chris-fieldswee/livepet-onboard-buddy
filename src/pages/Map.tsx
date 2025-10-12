@@ -4,15 +4,14 @@ import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Search, MapPin, Star } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, Search, Star } from "lucide-react";
 
 const MapPage = () => {
   const navigate = useNavigate();
 
   return (
     <MobileContainer>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col h-screen">
         <header className="sticky top-0 bg-background border-b p-4 flex items-center space-x-3 z-10">
           <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full">
             <ArrowLeft className="w-5 h-5" />
@@ -20,7 +19,7 @@ const MapPage = () => {
           <h1 className="text-xl font-semibold">Local Spots</h1>
         </header>
 
-        <div className="flex-1 p-4 space-y-4">
+        <div className="flex-1 p-4 space-y-4 overflow-y-auto pb-20">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input placeholder="Search for parks, vets, etc." className="pl-10" />
