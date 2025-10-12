@@ -27,7 +27,7 @@ const Dashboard = () => {
               <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
                 <PawPrint className="w-6 h-6 text-primary-foreground" />
               </div>
-              <h1 className="text-2xl font-bold">Livepet</h1>
+              <h1 className="text-xl font-bold">LIVEPET</h1>
             </div>
             <div className="flex items-center space-x-2">
               <Button variant="ghost" size="icon" className="rounded-full" onClick={() => navigate("/map")}>
