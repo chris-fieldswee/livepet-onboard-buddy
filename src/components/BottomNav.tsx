@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Home, Plus, Stethoscope, Activity, FileText, HeartPulse } from "lucide-react";
+import { Home, Plus, Heart, Activity, FileText, HeartPulse } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/ui/drawer";
 import { Button } from "./ui/button";
@@ -10,7 +10,7 @@ export const BottomNav = () => {
 
   const navItems = [
     { icon: Home, label: "Pet", path: "/" },
-    { icon: Stethoscope, label: "Health", path: "/health" },
+    { icon: Heart, label: "Feed", path: "/feed" },
   ];
 
   // Destructure the icons for correct JSX rendering
@@ -33,7 +33,7 @@ export const BottomNav = () => {
         </button>
 
         {/* Center "Record" Drawer */}
-        <Drawer>
+        <Drawer modal={false}>
           <DrawerTrigger asChild>
             <button className="flex flex-col items-center justify-center space-y-1 flex-1 h-full text-primary">
               <div className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center -mt-8 border-4 border-background">
