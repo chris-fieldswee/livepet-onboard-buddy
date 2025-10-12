@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { ChevronDown, Dog, Cat, Settings, LogOut, Plus, Shield, Bone, Stethoscope, Map, Compass, Bell, MessageSquare, X } from "lucide-react";
+import { ChevronDown, Dog, Cat, Settings, LogOut, Plus, Shield, Bone, Stethoscope, Map, Compass, Bell, MessageSquare } from "lucide-react";
 import { usePet } from "@/context/PetContext";
+import { useMobileContainer } from "@/context/MobileContainerContext";
 
 const petSpecificLinks = [
     { href: "/pet-profile", label: "Profile", icon: Shield },
@@ -16,6 +17,7 @@ const petSpecificLinks = [
 export const TopNav = () => {
     const navigate = useNavigate();
     const { pets, activePet, setActivePet } = usePet();
+    const { containerRef } = useMobileContainer();
 
     const handlePetChange = (petId: string) => {
         const newActivePet = pets.find(p => p.id === petId);
@@ -25,7 +27,7 @@ export const TopNav = () => {
     };
 
     return (
-        <Sheet modal={false}>
+        <Sheet>
             <header className="sticky top-0 z-10 bg-background p-4 border-b flex items-center justify-between">
                 <SheetTrigger asChild>
                     <div className="flex items-center gap-3 cursor-pointer">
@@ -45,7 +47,7 @@ export const TopNav = () => {
                     <Button variant="ghost" size="icon" className="rounded-full"><MessageSquare className="w-5 h-5" /></Button>
                 </div>
             </header>
-            <SheetContent side="left" className="p-0 flex flex-col">
+            <SheetContent container={containerRef?.current} side="left" className="p-0 flex flex-col">
                 <div className="p-4 pt-10">
                     <Select onValueChange={handlePetChange} defaultValue={activePet.id}>
                         <SelectTrigger>
