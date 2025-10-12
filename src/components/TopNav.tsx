@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { ChevronDown, Dog, Cat, Settings, LogOut, Plus, Shield, Bone, Stethoscope, Map, Compass, Bell, MessageSquare } from "lucide-react";
+import { ChevronDown, Dog, Cat, Settings, LogOut, Plus, Shield, Bone, Stethoscope, Map, Compass, Bell, MessageSquare, X } from "lucide-react";
 import { usePet } from "@/context/PetContext";
 
 const petSpecificLinks = [
@@ -25,7 +25,7 @@ export const TopNav = () => {
     };
 
     return (
-        <Sheet>
+        <Sheet modal={false}>
             <header className="sticky top-0 z-10 bg-background p-4 border-b flex items-center justify-between">
                 <SheetTrigger asChild>
                     <div className="flex items-center gap-3 cursor-pointer">
@@ -46,7 +46,7 @@ export const TopNav = () => {
                 </div>
             </header>
             <SheetContent side="left" className="p-0 flex flex-col">
-                <div className="p-4">
+                <div className="p-4 pt-10">
                     <Select onValueChange={handlePetChange} defaultValue={activePet.id}>
                         <SelectTrigger>
                             <SelectValue placeholder="Select a pet" />
