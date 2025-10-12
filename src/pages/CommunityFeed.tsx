@@ -3,7 +3,6 @@ import { MobileContainer } from "@/components/MobileContainer";
 import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PawPrint, MessageCircle, Share2, MapPin, Clock, Route } from "lucide-react";
 import { toast } from "sonner";
@@ -87,7 +86,7 @@ const CommunityFeed = () => {
 
   return (
     <MobileContainer>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col h-screen">
         <header className="sticky top-0 bg-background border-b p-4 z-10">
           <h1 className="text-2xl font-bold">Community Feed</h1>
         </header>
