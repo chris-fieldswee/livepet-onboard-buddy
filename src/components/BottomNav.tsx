@@ -1,10 +1,9 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Home, Plus, Heart, Activity, FileText, HeartPulse } from "lucide-react";
+import { Home, Plus, Heart, Activity, FileText, HeartPulse, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose, DrawerPortal } from "@/components/ui/drawer";
 import { Button } from "./ui/button";
 import { useMobileContainer } from "@/context/MobileContainerContext";
-import { X } from "lucide-react";
 
 export const BottomNav = () => {
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ export const BottomNav = () => {
           <span className="text-xs font-medium">{navItems[0].label}</span>
         </button>
 
-        <Drawer container={containerRef?.current}>
+        <Drawer>
           <DrawerTrigger asChild>
             <button className="flex flex-col items-center justify-center space-y-1 flex-1 h-full text-primary">
               <div className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center -mt-8 border-4 border-background">
@@ -42,39 +41,41 @@ export const BottomNav = () => {
               <span className="text-xs font-medium -mt-1">Record</span>
             </button>
           </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>What would you like to record?</DrawerTitle>
-            </DrawerHeader>
-            <div className="p-4 space-y-2">
-              <Button variant="outline" className="w-full justify-start h-14" onClick={() => navigate('/record-activity')}>
-                <Activity className="mr-2" />
-                <div>
-                  <p className="font-semibold">Shareable Activity</p>
-                  <p className="font-normal text-muted-foreground text-sm">Walk, training, playtime for the feed</p>
-                </div>
-              </Button>
-              <Button variant="outline" className="w-full justify-start h-14" onClick={() => navigate('/log-activity')}>
-                <FileText className="mr-2" />
-                <div>
-                  <p className="font-semibold">Quick Log</p>
-                  <p className="font-normal text-muted-foreground text-sm">Food, water, potty, notes, etc.</p>
-                </div>
-              </Button>
-              <Button variant="outline" className="w-full justify-start h-14" onClick={() => navigate('/health-records')}>
-                <HeartPulse className="mr-2" />
-                 <div>
-                  <p className="font-semibold">Health Record</p>
-                  <p className="font-normal text-muted-foreground text-sm">Vaccinations, medications, etc.</p>
-                </div>
-              </Button>
-            </div>
-             <DrawerClose asChild>
-                <Button variant="ghost" size="icon" className="absolute top-4 right-4 rounded-full">
+          <DrawerPortal container={containerRef?.current}>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>What would you like to record?</DrawerTitle>
+              </DrawerHeader>
+              <div className="p-4 space-y-2">
+                <Button variant="outline" className="w-full justify-start h-14" onClick={() => navigate('/record-activity')}>
+                  <Activity className="mr-2" />
+                  <div>
+                    <p className="font-semibold">Shareable Activity</p>
+                    <p className="font-normal text-muted-foreground text-sm">Walk, training, playtime for the feed</p>
+                  </div>
+                </Button>
+                <Button variant="outline" className="w-full justify-start h-14" onClick={() => navigate('/log-activity')}>
+                  <FileText className="mr-2" />
+                  <div>
+                    <p className="font-semibold">Quick Log</p>
+                    <p className="font-normal text-muted-foreground text-sm">Food, water, potty, notes, etc.</p>
+                  </div>
+                </Button>
+                <Button variant="outline" className="w-full justify-start h-14" onClick={() => navigate('/health-records')}>
+                  <HeartPulse className="mr-2" />
+                   <div>
+                    <p className="font-semibold">Health Record</p>
+                    <p className="font-normal text-muted-foreground text-sm">Vaccinations, medications, etc.</p>
+                  </div>
+                </Button>
+              </div>
+              <DrawerClose asChild>
+                <Button variant="ghost" size="icon" className="absolute top-3 right-3 rounded-full">
                     <X className="w-4 h-4" />
                 </Button>
-            </DrawerClose>
-          </DrawerContent>
+              </DrawerClose>
+            </DrawerContent>
+          </DrawerPortal>
         </Drawer>
 
         <button
