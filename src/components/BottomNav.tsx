@@ -41,7 +41,7 @@ export const BottomNav = () => {
               <span className="text-xs font-medium -mt-1">Record</span>
             </button>
           </DrawerTrigger>
-          <DrawerPortal container={containerRef?.current}>
+          <DrawerPortal container={containerRef?.current ?? undefined}>
             <DrawerContent>
               <DrawerHeader>
                 <DrawerTitle>What would you like to record?</DrawerTitle>
