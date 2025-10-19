@@ -10,7 +10,7 @@ export const MobileContainer = ({ children }: MobileContainerProps) => {
 
   return (
     <div className="min-h-screen bg-muted flex items-center justify-center">
-      <div ref={containerRef} className="w-full max-w-[428px] h-screen bg-background shadow-2xl overflow-hidden relative">
+      <div ref={containerRef} className="w-full max-w-[428px] h-screen bg-background shadow-2xl overflow-hidden relative isolate">
         <MobileContainerContext.Provider value={{ containerRef }}>
           {children}
         </MobileContainerContext.Provider>
