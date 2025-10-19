@@ -47,7 +47,7 @@ export const TopNav = () => {
                     <Button variant="ghost" size="icon" className="rounded-full"><MessageSquare className="w-5 h-5" /></Button>
                 </div>
             </header>
-            <SheetPortal container={containerRef?.current}>
+            <SheetPortal container={containerRef?.current ?? undefined}>
                 <SheetContent side="left" className="p-0 flex flex-col">
                     <div className="p-4 pt-10">
                         <Select onValueChange={handlePetChange} defaultValue={activePet.id}>
